@@ -1,21 +1,17 @@
 import Joi from "joi-browser";
 
 const editCardsInputSchema = {
-  title: Joi.string().required().label("Title").trim(),
-  subTitle: Joi.string().required().min(2).max(30).label("Sub Title").trim(),
-  description: Joi.string()
-    .required()
-    .min(10)
-    .max(255)
-    .label("Description")
-    .trim(),
-  address: Joi.string().required().label("Address").trim(),
+  title: Joi.string().min(2).max(256).required(),
+  subTitle: Joi.string().min(2).max(256).required(),
+  description: Joi.string().min(2).max(1024).required(),
+  address: Joi.string().min(2).max(256).required(),
   phone: Joi.string()
-    .required()
-    .label("Phone Number")
-    .length(10)
-    .regex(/^[0-9]+$/),
-  url: Joi.string().required().label("URL"),
+    .min(9)
+    .max(14)
+    .regex(/^[0-9]+$/)
+    .required(),
+  url: Joi.string().min(6).max(1024),
+  alt: Joi.string().min(2).max(256),
 };
 
 export default editCardsInputSchema;
